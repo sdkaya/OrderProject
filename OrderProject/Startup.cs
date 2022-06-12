@@ -9,6 +9,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using OrderProject.DataAccess;
+using OrderProject.DataAccess.IRepository;
+using OrderProject.DataAccess.Repository;
+using OrderProject.Services.IServices;
+using OrderProject.Services.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +34,10 @@ namespace OrderProject
         {
 
             services.AddControllers();
+
+            services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+
             services.AddDbContext<OrderDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Connection")));
             services.AddSwaggerGen(c =>
