@@ -22,7 +22,7 @@ namespace OrderProject.Services.Services
             _orderRepository = orderRepository;
         }
 
-        public async Task<Response<bool>> CreateJoinRequest(List<CreateOrderDto> createOrderDtoList)
+        public async Task<Response<bool>> CreateOrder(List<CreateOrderDto> createOrderDtoList)
         {
             try
             {
@@ -75,17 +75,17 @@ namespace OrderProject.Services.Services
                 var result = new OrderFilterResponseDto()
                 {
                     Count = query.Count(),
-                    orders = new List<OrderResponseDto>().Select(x => new OrderResponseDto()
+                    orders = query.Select(x=> new OrderResponseDto()
                     {
                         BrandId = x.BrandId,
                         CreatedOn = x.CreatedOn,
-                        Price = x.Price,
                         CustomerName = x.CustomerName,
+                        Price = x.Price,
                         Status = x.Status,
-                        StoreName = x.StoreName
-
+                        StoreName = x.StoreName,
 
                     }).ToList(),
+                  
                 };
 
                 return new Response<OrderFilterResponseDto>() { isSuccess = true, Data = result, List = null, Message = "Success", Status = StatusCodes.Status200OK };

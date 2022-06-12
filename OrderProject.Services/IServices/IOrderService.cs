@@ -11,7 +11,7 @@ namespace OrderProject.Services.IServices
 {
     public interface IOrderService
     {
-        Task<Response<bool>> CreateJoinRequest(List<CreateOrderDto> createOrderDtoList);
+        Task<Response<bool>> CreateOrder(List<CreateOrderDto> createOrderDtoList);
         Task<Response<OrderFilterResponseDto>> FilterBy(OrderFilterModel orderFilterModel);
     }
 }
