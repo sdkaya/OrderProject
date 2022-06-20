@@ -24,7 +24,7 @@ namespace OrderProject.Controllers
 
 
         [HttpPost("CreateOrder")]
-        public async Task<Response<bool>> CreateComment(List<CreateOrderDto> dto)
+        public async Task<Response<bool>> CreateOrder(List<CreateOrderDto> dto)
         {
             try
             {
